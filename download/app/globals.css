@@ -1,0 +1,23 @@
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Ocupa toda a tela */
+  width: 100vw;
+  height: 100vh;
+
+  /* Sua imagem localizada em public/imagens/imagem.png */
+  background-image: url("/imagens/imagem.png");
+  background-size: cover;
+  background-position: center;
+
+  /* Transparência para não prejudicar o conteúdo */
+  opacity: 0.1;
+
+  /* Não captura cliques para não prejudicar botões e links */
+  pointer-events: none;
+
+  /* Fica atrás de todo o conteúdo */
+  z-index: -1;
+}

@@ -1,0 +1,35 @@
+prisma
+// schema.prisma
+datasource db {
+  provider = "postgresql" // Altere para o provedor do seu banco de dados (ex: "mysql", "sqlite")
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  password      String
+  role          String    // ex: "autor", "leitor", "admin"
+  books         Book[]
+}
+
+model Book {
+  id            Int       @id @default(autoincrement())
+  title         String
+  content       String
+  coverImage    String
+  authorId      Int
+  author        User      @relation(fields: [authorId], references: [id])
+  ratings       Rating[]
+}
+
+model Rating {
+  id            Int       @id @default(autoincrement())
+  score         Int
+  review        String
+  bookId        Int
+  book          Book      @relation(fields: [bookId], references: [id])
+  userId        Int
+  user          User      @relation(fields: [userId], references: [id])
+}
